@@ -1,6 +1,12 @@
 # Use Node.js LTS (Active LTS as of 2023)
 FROM node:18-alpine AS base
 
+# Build arguments
+ARG NEXT_PUBLIC_SITE_URL
+ARG NEXT_PUBLIC_GTM_ID
+ARG RESEND_API_KEY
+ARG NGINX_HOST
+
 # Set working directory
 WORKDIR /app
 
@@ -21,6 +27,12 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Set build-time environment variables
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
+    NEXT_PUBLIC_GTM_ID=$NEXT_PUBLIC_GTM_ID \
+    RESEND_API_KEY=$RESEND_API_KEY \
+    NGINX_HOST=$NGINX_HOST
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry

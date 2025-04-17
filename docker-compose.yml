@@ -3,6 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+        - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
+        - RESEND_API_KEY=${RESEND_API_KEY}
+        - NGINX_HOST=${NGINX_HOST}
     command: sh -c "./scripts/create-dirs.sh && node server.js"
     image: alpha-septic:latest
     container_name: alpha-septic
