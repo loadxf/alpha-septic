@@ -5,6 +5,8 @@
  * and logs warnings for missing or potentially misconfigured variables.
  */
 
+import { validateUrl } from './validate-url';
+
 // Variables that should be set for production but can have fallbacks
 const RECOMMENDED_VARIABLES = [
   'NEXT_PUBLIC_GTM_ID'
@@ -47,6 +49,14 @@ export function validateEnvironmentVariables(): void {
   for (const variable of REQUIRED_VARIABLES) {
     if (!process.env[variable]) {
       console.error(`🚨 ERROR: Required environment variable ${variable} is not set!`);
+      hasErrors = true;
+    }
+  }
+  
+  // Validate URL format
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    if (!validateUrl(process.env.NEXT_PUBLIC_SITE_URL)) {
+      console.error(`🚨 ERROR: NEXT_PUBLIC_SITE_URL must include protocol (http:// or https://)`);
       hasErrors = true;
     }
   }
@@ -112,6 +122,15 @@ export function validateEnv(): void {
   for (const variable of REQUIRED_VARIABLES) {
     if (!process.env[variable]) {
       throw new Error(`❌ Missing required environment variable: ${variable}`);
+    }
+  }
+
+  // Validate URL format
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    try {
+      new URL(process.env.NEXT_PUBLIC_SITE_URL);
+    } catch (error) {
+      throw new Error(`❌ Invalid NEXT_PUBLIC_SITE_URL: ${process.env.NEXT_PUBLIC_SITE_URL} (must include protocol)`);
     }
   }
 

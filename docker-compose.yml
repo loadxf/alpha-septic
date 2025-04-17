@@ -8,6 +8,13 @@ services:
         - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
         - RESEND_API_KEY=${RESEND_API_KEY}
         - NGINX_HOST=${NGINX_HOST}
+        - EMAIL_USER=${EMAIL_USER}
+        - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+        - NEXT_PUBLIC_ADMIN_EMAIL=${NEXT_PUBLIC_ADMIN_EMAIL}
+        - NEXT_PUBLIC_ADMIN_PASSWORD=${NEXT_PUBLIC_ADMIN_PASSWORD}
+        - TOKEN_SECRET=${TOKEN_SECRET}
+        - CONTACT_EMAIL=${CONTACT_EMAIL}
+        - BOOKING_EMAIL=${BOOKING_EMAIL}
     command: sh -c "./scripts/create-dirs.sh && node server.js"
     image: alpha-septic:latest
     container_name: alpha-septic
