@@ -46,12 +46,11 @@ declare module 'next' {
     metadataBase?: URL;
   }
   
-  // Updated PageProps type to align with Next.js expectations
-  // Removing this since we're not using it and defining types directly in components
-  // export interface PageProps<P = {}, Q = {}> {
-  //   params: P;
-  //   searchParams: Q;
-  // }
+  // Updated PageProps type to align with Next.js 15 expectations
+  export interface PageProps<P = {}, Q = {}> {
+    params: P;
+    searchParams: Q;
+  }
 }
 
 declare module 'next/navigation' {

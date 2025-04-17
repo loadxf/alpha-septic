@@ -1,5 +1,5 @@
 import React from "react"
-import { Metadata } from "next"
+import { Metadata, PageProps } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -65,14 +65,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-// Remove custom interface that was causing issues with Next.js 15
+// Fix the type error by using the PageProps interface
 export default async function NewsArticlePage({
   params,
   searchParams
-}: {
-  params: { slug: string },
-  searchParams: SearchParams
-}) {
+}: PageProps<{ slug: string }, SearchParams>) {
   const newsData = await getNewsData()
   const article = newsData.find((item) => item.slug === params.slug)
   
