@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: sh -c "./scripts/create-dirs.sh && node server.js"
-    image: alpha-septic-website:latest
-    container_name: alpha-septic-web
+    image: alpha-septic:latest
+    container_name: alpha-septic
     ports:
       - "3000:3000"
     restart: always

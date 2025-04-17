@@ -41,8 +41,8 @@ This checklist provides step-by-step instructions for deploying the Alpha Septic
 
 - [ ] Clone or copy the repository:
   ```bash
-  git clone https://github.com/your-repo/alpha-septic-website.git
-  cd alpha-septic-website
+  git clone https://github.com/loadxf/alpha-septic.git
+  cd alpha-septic
   ```
 - [ ] Create and configure the `.env` file:
   ```bash
@@ -55,13 +55,17 @@ This checklist provides step-by-step instructions for deploying the Alpha Septic
   ```
 - [ ] Build and start Docker containers:
   ```bash
-  docker-compose build
-  docker-compose up -d
+  # When using pnpm-lock.yaml with possible mismatches, use the following:
+  COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --build-arg SKIP_LOCKFILE_CHECK=true
+  # Or regenerate the lock file before building
+  docker compose run --rm web pnpm install --no-frozen-lockfile
+  docker compose build
+  docker compose up -d
   ```
 - [ ] Verify container status:
   ```bash
-  docker-compose ps
-  docker-compose logs
+  docker compose ps
+  docker compose logs
   ```
 
 ## 3. SSL Certificate Setup
