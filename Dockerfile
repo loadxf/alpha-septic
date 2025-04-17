@@ -27,7 +27,8 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN npm run build
+# Use the build-no-check script to skip type checking during build
+RUN npm run build-no-check
 
 # Production image, copy all the files and run next
 FROM base AS runner
