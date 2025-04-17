@@ -1,5 +1,5 @@
 import React from "react"
-import { Metadata, PageProps } from "next"
+import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -65,11 +65,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-// Fix the type error by using the PageProps interface
+// Use direct type annotation instead of PageProps interface
 export default async function NewsArticlePage({
   params,
   searchParams
-}: PageProps<{ slug: string }, SearchParams>) {
+}: {
+  params: { slug: string },
+  searchParams: SearchParams
+}) {
   const newsData = await getNewsData()
   const article = newsData.find((item) => item.slug === params.slug)
   
