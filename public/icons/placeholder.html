@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generation Instructions</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #0055b8; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 5px; }
+        .note { color: #d00; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Icons Required for Alpha Septic Website</h1>
+    
+    <p>The following icon files need to be created from the logo.webp file found in the public directory:</p>
+    
+    <ul>
+        <li><strong>favicon.ico</strong> - Multi-size icon file (16x16, 32x32, 48x48)</li>
+        <li><strong>icon-192.png</strong> - 192x192 PNG icon</li>
+        <li><strong>icon-512.png</strong> - 512x512 PNG icon</li>
+        <li><strong>icon-maskable.png</strong> - 512x512 PNG icon with padding for maskable icon support</li>
+    </ul>
+    
+    <h2>Instructions for Generation</h2>
+    
+    <p>Use an online converter like <a href="https://cloudconvert.com/webp-to-ico" target="_blank">CloudConvert</a> or <a href="https://convertio.co/webp-ico/" target="_blank">Convertio</a> to convert the logo.webp file to the required formats.</p>
+    
+    <p>For the maskable icon, ensure there is sufficient padding (about 15% from each edge) to allow for safe display on various platforms.</p>
+    
+    <p class="note">NOTE: After generating these icons, place them in the public directory for favicon.ico and the public/icons directory for the PNG files.</p>
+    
+    <h2>Icon Usage</h2>
+    
+    <p>These icons are referenced in the following files:</p>
+    <pre>
+    - app/manifest.ts: All icons are referenced here
+    - app/layout.tsx: favicon.ico is referenced
+    </pre>
+    
+    <p>Once all icons are generated and placed in the correct locations, this placeholder file can be removed.</p>
+</body>
+</html> 

@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: alpha-septic-website:latest
+    container_name: alpha-septic-web
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=production
+      # Optional: List specific environment variables here, or use env_file
+      # - NEXT_PUBLIC_SITE_URL=https://callalphaseptic.com
+      # - RESEND_API_KEY=your_resend_api_key
+      # - EMAIL_USER=your_email@example.com
+    # Better option: Use env_file to load from .env
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    # Uncomment to use volumes for persistent data
+    # volumes:
+    #   - ./data:/app/data
+    #   - ./public/uploads:/app/public/uploads
+    # Log configuration for production
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Optional network configuration
+    networks:
+      - web-network
+
+  # Uncomment to add a simple nginx proxy
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: alpha-septic-nginx
+  #   restart: always
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx/conf.d:/etc/nginx/conf.d
+  #     - ./nginx/ssl:/etc/nginx/ssl
+  #     - ./nginx/www:/var/www/html
+  #   depends_on:
+  #     - web
+  #   networks:
+  #     - web-network
+
+networks:
+  web-network:
+    driver: bridge
+
+# Uncomment to add named volumes for data persistence
+# volumes:
+#   data-volume:
+#   uploads-volume: 
