@@ -23,18 +23,35 @@ const TOKEN_SECRET = process.env.TOKEN_SECRET || 'alpha-septic-default-secret'; 
  * In a production app, this would use a database and proper password hashing
  */
 export function verifyAdminCredentials(email: string, password: string): boolean {
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || "admin@callalphaseptic.com";
-  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
+  // Get admin credentials from environment variables
+  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
   
-  // With this implementation, we'll check if we're still using demo credentials
-  // but still allow access
+  // Check if credentials are configured
+  if (!adminEmail || !adminPassword) {
+    console.error('Admin credentials not properly configured in environment variables');
+    return false;
+  }
+  
+  // In production, check for weak/default credentials
   if (process.env.NODE_ENV === 'production') {
-    if (adminEmail === "admin@callalphaseptic.com" || adminPassword === "admin123") {
-      console.warn('⚠️ WARNING: Using demo admin credentials in production!');
+    if (adminEmail === "admin@callalphaseptic.com" || adminPassword === "admin123" || adminPassword.length < 8) {
+      console.warn('⚠️ WARNING: Using weak or demo admin credentials in production!');
     }
   }
   
-  return email === adminEmail && password === adminPassword;
+  // Use a constant-time string comparison to prevent timing attacks
+  const emailMatches = crypto.timingSafeEqual(
+    Buffer.from(email), 
+    Buffer.from(adminEmail)
+  );
+  
+  const passwordMatches = crypto.timingSafeEqual(
+    Buffer.from(password), 
+    Buffer.from(adminPassword)
+  );
+  
+  return emailMatches && passwordMatches;
 }
 
 /**
@@ -50,13 +67,11 @@ export function generateAuthToken(email: string): string {
       email,
       exp: expiryTime,
       iat: Date.now(), // issued at
+      nonce: crypto.randomBytes(8).toString('hex'), // Add entropy to prevent token reuse
     };
     
-    // Convert payload to string and encrypt it
+    // Convert payload to string
     const dataString = JSON.stringify(payload);
-    
-    // In a real app, we would use JWT with proper signing
-    // This is a simplified version for demo purposes
     
     // Create HMAC signature using the secret
     const hmac = crypto.createHmac('sha256', TOKEN_SECRET);
@@ -69,8 +84,7 @@ export function generateAuthToken(email: string): string {
     return token;
   } catch (error) {
     console.error('Failed to generate auth token:', error);
-    // Fallback to a simpler token generation if crypto fails
-    return Buffer.from(`${email}:${Date.now() + (TOKEN_EXPIRY_HOURS * 60 * 60 * 1000)}`).toString('base64');
+    throw new Error('Authentication token generation failed');
   }
 }
 

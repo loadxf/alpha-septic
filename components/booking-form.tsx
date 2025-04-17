@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react"
+import { CsrfToken, useCsrfToken } from "@/components/csrf-token"
 
 export function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -24,6 +25,9 @@ export function BookingForm() {
   const [notes, setNotes] = useState("")
   const [error, setError] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
+  
+  // Get a CSRF token for this form
+  const csrfToken = useCsrfToken();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -35,6 +39,7 @@ export function BookingForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken // Include CSRF token in the header
         },
         body: JSON.stringify({
           name,
@@ -46,6 +51,7 @@ export function BookingForm() {
           date,
           time,
           notes,
+          _csrf: csrfToken // Also include it in the request body
         }),
       })
 
@@ -78,6 +84,9 @@ export function BookingForm() {
 
   return (
     <form id="booking-form" onSubmit={handleSubmit} className="space-y-4">
+      {/* CSRF protection */}
+      <CsrfToken />
+      
       {isSubmitted && (
         <div className={`p-4 rounded-md mb-6 bg-green-50 text-green-700`} role="alert" aria-live="polite">
           <div className="flex items-start">

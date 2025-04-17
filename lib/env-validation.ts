@@ -7,17 +7,21 @@
 
 // Variables that should be set for production but can have fallbacks
 const RECOMMENDED_VARIABLES = [
-  'NEXT_PUBLIC_SITE_URL',
-  'CONTACT_EMAIL',
-  'BOOKING_EMAIL',
   'NEXT_PUBLIC_GTM_ID'
 ];
 
 // Variables that are absolutely required with no fallbacks
 const REQUIRED_VARIABLES = [
+  'NGINX_HOST',
   'RESEND_API_KEY',
   'EMAIL_USER',
-  'EMAIL_PASSWORD'
+  'EMAIL_PASSWORD',
+  'NEXT_PUBLIC_ADMIN_EMAIL',
+  'NEXT_PUBLIC_ADMIN_PASSWORD',
+  'TOKEN_SECRET',
+  'NEXT_PUBLIC_SITE_URL',
+  'CONTACT_EMAIL',
+  'BOOKING_EMAIL'
 ];
 
 // Demo variables that should be replaced in production
@@ -100,5 +104,22 @@ export function validateEmailConfiguration(): void {
   
   if (emailUser?.includes('gmail') && emailPassword && emailPassword.length < 16) {
     console.warn('⚠️ Gmail detected with short password. Be sure to use an App Password, not your regular Gmail password!');
+  }
+}
+
+export function validateEnv(): void {
+  // Check required variables
+  for (const variable of REQUIRED_VARIABLES) {
+    if (!process.env[variable]) {
+      throw new Error(`❌ Missing required environment variable: ${variable}`);
+    }
+  }
+
+  // Validate SMTP configuration
+  if (process.env.SMTP_SECURE === 'true') {
+    const port = process.env.SMTP_PORT;
+    if (!port || !port.match(/^(465|587)$/)) {
+      throw new Error('❌ Invalid SMTP port for secure connection (must be 465 or 587)');
+    }
   }
 } 

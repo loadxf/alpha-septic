@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: sh -c "./scripts/create-dirs.sh && node server.js"
     image: alpha-septic-website:latest
     container_name: alpha-septic-web
     ports:
@@ -12,55 +13,69 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
-      # Optional: List specific environment variables here, or use env_file
-      # - NEXT_PUBLIC_SITE_URL=https://callalphaseptic.com
-      # - RESEND_API_KEY=your_resend_api_key
-      # - EMAIL_USER=your_email@example.com
-    # Better option: Use env_file to load from .env
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - NEXT_PUBLIC_ADMIN_EMAIL=${NEXT_PUBLIC_ADMIN_EMAIL}
+      - NEXT_PUBLIC_ADMIN_PASSWORD=${NEXT_PUBLIC_ADMIN_PASSWORD}
+      - TOKEN_SECRET=${TOKEN_SECRET}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+      - CONTACT_EMAIL=${CONTACT_EMAIL}
+      - BOOKING_EMAIL=${BOOKING_EMAIL}
+      - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_SECURE=${SMTP_SECURE:-false}
+      - SMTP_USER=${SMTP_USER:-$EMAIL_USER}
+      - SMTP_PASS=${SMTP_PASS:-$EMAIL_PASSWORD}
+      - NGINX_HOST=${NGINX_HOST}
+    # Load environment variables from .env file
     env_file:
       - .env
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:3000"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 15s
-    # Uncomment to use volumes for persistent data
-    # volumes:
-    #   - ./data:/app/data
-    #   - ./public/uploads:/app/public/uploads
+    # Volumes for persistent data (if needed)
+    volumes:
+      - ./public/uploads:/app/public/uploads
     # Log configuration for production
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
-    # Optional network configuration
     networks:
       - web-network
 
-  # Uncomment to add a simple nginx proxy
-  # nginx:
-  #   image: nginx:alpine
-  #   container_name: alpha-septic-nginx
-  #   restart: always
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./nginx/conf.d:/etc/nginx/conf.d
-  #     - ./nginx/ssl:/etc/nginx/ssl
-  #     - ./nginx/www:/var/www/html
-  #   depends_on:
-  #     - web
-  #   networks:
-  #     - web-network
+  # Production NGINX proxy with SSL
+  nginx:
+    image: nginx:alpine
+    container_name: alpha-septic-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/www:/var/www/html
+    depends_on:
+      - web
+    networks:
+      - web-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
   web-network:
     driver: bridge
 
-# Uncomment to add named volumes for data persistence
-# volumes:
-#   data-volume:
-#   uploads-volume: 
+# Named volumes for data persistence
+volumes:
+  uploads-volume: 

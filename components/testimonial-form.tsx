@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { Star } from "lucide-react"
+import { CsrfToken, useCsrfToken } from "@/components/csrf-token"
 
 export default function TestimonialForm() {
   const [name, setName] = useState("")
@@ -14,6 +15,9 @@ export default function TestimonialForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
+  
+  // Get a CSRF token for this form
+  const csrfToken = useCsrfToken();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,6 +29,7 @@ export default function TestimonialForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken // Include CSRF token in the header
         },
         body: JSON.stringify({
           name,
@@ -32,6 +37,7 @@ export default function TestimonialForm() {
           rating,
           testimonial,
           service,
+          _csrf: csrfToken // Also include it in the request body
         }),
       })
 
@@ -76,6 +82,9 @@ export default function TestimonialForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* CSRF protection */}
+          <CsrfToken />
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">

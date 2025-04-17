@@ -94,7 +94,7 @@ export const metadata: Metadata = {
     yandex: "verification_token",
     yahoo: "verification_token",
     other: {
-      me: ["justin@loadxlogistics.com"],
+      me: ["contact@callalphaseptic.com"],
     },
   },
     generator: 'v0.dev'

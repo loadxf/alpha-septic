@@ -3,12 +3,16 @@
 import type React from "react"
 
 import { useState } from "react"
+import { CsrfToken, useCsrfToken } from "@/components/csrf-token"
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
+  
+  // Get a CSRF token for this form
+  const csrfToken = useCsrfToken();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -20,8 +24,12 @@ export default function NewsletterForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken // Include CSRF token in the header
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ 
+          email,
+          _csrf: csrfToken // Also include it in the request body
+        }),
       })
 
       const data = await response.json()
@@ -51,6 +59,9 @@ export default function NewsletterForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* CSRF protection */}
+          <CsrfToken />
+          
           <div>
             <label htmlFor="email" className="sr-only">
               Email Address

@@ -44,12 +44,17 @@ The following environment variables are required:
 - `BOOKING_EMAIL`: Email where booking form submissions are sent
 - `NEXT_PUBLIC_GTM_ID`: Google Tag Manager ID
 
+You can generate secure values for secrets using the included script:
+```bash
+node scripts/generate-secrets.js
+```
+
 ## Pre-Deployment Checklist
 
 Run the pre-deployment checklist script to verify that the site is ready for production:
 
 ```bash
-node pre-deployment-checklist.js
+node scripts/pre-deployment-checklist.js
 ```
 
 This script checks:
@@ -66,12 +71,47 @@ This script checks:
 ### Option 1: Docker Deployment
 
 1. Make sure Docker and Docker Compose are installed
-2. Create a `.env` file with production values
-3. Build and run the Docker containers:
+2. Create a `.env` file with production values:
+   ```bash
+   cp .env.example .env
+   ```
+3. Generate secure secret values:
+   ```bash
+   node scripts/generate-secrets.js -u
+   ```
+4. Update `.env` with all required values
+
+5. Build and run the Docker containers:
    ```bash
    docker-compose up -d
    ```
-4. The site will be available at http://localhost:3000 (or your configured port)
+6. For initial deployment or after major updates, build with no cache:
+   ```bash
+   docker-compose build --no-cache
+   docker-compose up -d
+   ```
+7. The site will be available at http://localhost:3000 (or your configured port)
+
+#### Setting up HTTPS with Nginx (Production)
+
+The Docker setup includes an Nginx container configured for SSL/TLS. To use HTTPS:
+
+1. Create SSL certificates (e.g., using Let's Encrypt):
+   ```bash
+   mkdir -p nginx/ssl/live/callalphaseptic.com
+   # Copy your certificates to the proper location
+   # - fullchain.pem to nginx/ssl/live/callalphaseptic.com/fullchain.pem
+   # - privkey.pem to nginx/ssl/live/callalphaseptic.com/privkey.pem
+   ```
+
+2. Set your domain in the Nginx configuration in `nginx/conf.d/default.conf`
+
+3. Restart the Nginx container:
+   ```bash
+   docker-compose restart nginx
+   ```
+
+For detailed instructions on Docker deployment, see the [Docker Deployment Guide](DOCKER-DEPLOYMENT.md).
 
 ### Option 2: Node.js Deployment
 
@@ -116,3 +156,23 @@ node scripts/batch-optimize-images.js
 ## License
 
 Copyright © 2023 Alpha Septic Services. All rights reserved.
+
+## Production Deployment Requirements
+
+1. Set your domain in `.env`:
+   ```bash
+   NGINX_HOST=your-domain.com
+   ```
+2. Create required directories:
+   ```bash
+   node scripts/create-dirs.sh
+   ```
+3. Place SSL certificates in:
+   ```bash
+   nginx/ssl/live/${NGINX_HOST}/fullchain.pem
+   nginx/ssl/live/${NGINX_HOST}/privkey.pem
+   ```
+4. Generate all secrets:
+   ```bash
+   node scripts/generate-secrets.js -u
+   ```

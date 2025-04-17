@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server"
 import { sendEmail, getServiceUnavailableMessage } from "@/lib/email"
+import { apiMiddleware } from "@/lib/api-middleware"
 
 // Regular expression for validating email
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 export async function POST(request: Request) {
   try {
+    // Apply middleware checks (CSRF, rate limiting)
+    const middlewareResult = await apiMiddleware(request);
+    if (middlewareResult) {
+      return middlewareResult; // Return early if middleware check failed
+    }
+    
     const body = await request.json()
     const { name, email, rating, testimonial, service } = body
 

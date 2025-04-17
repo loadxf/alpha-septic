@@ -10,6 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { exec } = require('child_process');
 
 // Colors for terminal output
 const colors = {
@@ -29,7 +30,7 @@ const config = {
   
   // Required files that must exist
   requiredFiles: [
-    'next.config.js',
+    'next.config.mjs',
     'package.json',
     'tsconfig.json',
     'app/layout.tsx',
@@ -462,9 +463,42 @@ function printSummary() {
 }
 
 /**
+ * Run Docker-specific checks
+ */
+async function checkDockerConfiguration() {
+  console.log('Checking Docker configuration...');
+  
+  const dockerChecks = [
+    {
+      name: 'Nginx Configuration',
+      check: () => fs.existsSync('nginx/conf.d/default.conf'),
+      fix: 'Copy nginx.example.conf to nginx/conf.d/default.conf'
+    },
+    {
+      name: 'SSL Directories',
+      check: () => fs.existsSync('nginx/ssl'),
+      fix: 'Run: mkdir -p nginx/ssl/live/your-domain.com'
+    }
+  ];
+
+  for (const check of dockerChecks) {
+    try {
+      const result = await check.check();
+      if (result) {
+        addIssue('passed', `${check.name}: OK`);
+      } else {
+        addIssue('warnings', `${check.name}: ${check.fix}`);
+      }
+    } catch (error) {
+      addIssue('failed', `${check.name}: Error - ${error.message}`);
+    }
+  }
+}
+
+/**
  * Main function to run all checks
  */
-function main() {
+async function main() {
   console.log('========================================');
   console.log('  NEXT.JS PRE-DEPLOYMENT CHECKLIST');
   console.log('========================================\n');
@@ -477,6 +511,7 @@ function main() {
   checkHardcodedUrls();
   checkAppStructure();
   checkBuildConfig();
+  await checkDockerConfiguration();
   
   // Print summary
   printSummary();
@@ -487,9 +522,12 @@ function main() {
 
 // Run the main function if this script is executed directly
 if (require.main === module) {
-  const exitCode = main();
-  // Exit process with appropriate code
-  process.exit(exitCode);
+  main().then(exitCode => {
+    process.exit(exitCode);
+  }).catch(error => {
+    console.error('Error running checks:', error);
+    process.exit(1);
+  });
 }
 
 module.exports = main; 

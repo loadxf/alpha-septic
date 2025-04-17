@@ -20,5 +20,5 @@ import 'core-js/features/object/values';
 import 'core-js/features/string/pad-start';
 import 'core-js/features/string/pad-end';
 
-// Import DOM polyfills if needed
-// import 'classlist-polyfill'; 
+// Import DOM polyfills for older browsers
+import 'classlist-polyfill'; 

@@ -4,9 +4,18 @@ const nextConfig = {
   swcMinify: true,
   output: "standalone",
   images: {
-    domains: ['callalphaseptic.com'],
+    domains: ['callalphaseptic.com', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
+  // Optimize for production
+  poweredByHeader: false,
+  compress: true,
+  // Handle trailing slashes consistently
+  trailingSlash: false,
+  
+  // Add headers for security and caching
   async headers() {
     return [
       {
@@ -102,6 +111,8 @@ const nextConfig = {
       },
     ];
   },
+  
+  // Add redirects
   async redirects() {
     return [
       {
@@ -110,6 +121,26 @@ const nextConfig = {
         permanent: true,
       },
     ];
+  },
+  
+  // Add polyfills for older browsers
+  webpack: (config, { isServer, dev }) => {
+    // Only apply polyfills in client-side production builds
+    if (!isServer && !dev) {
+      // Add core-js polyfills
+      const originalEntry = config.entry;
+      config.entry = async () => {
+        const entries = await originalEntry();
+        
+        if (entries['main.js'] && !entries['main.js'].includes('./polyfills.js')) {
+          entries['main.js'].unshift('./polyfills.js');
+        }
+        
+        return entries;
+      };
+    }
+    
+    return config;
   },
 };
 
