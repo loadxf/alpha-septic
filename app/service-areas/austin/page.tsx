@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
   keywords:
     "Austin septic service, septic pumping Austin TX, septic tank cleaning Austin, Austin septic company, emergency septic service Austin",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/austin`,
+    canonical: "https://www.callalphaseptic.com/service-areas/austin",
   },
 }
 
@@ -382,7 +380,7 @@ export default function AustinServiceAreaPage() {
       <FAQSchema 
         faqs={austinFaqs} 
         headline="Austin Septic Services FAQs"
-        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/austin`}
+        mainEntityOfPage={`https://www.callalphaseptic.com/service-areas/austin`}
       />
       
       <BreadcrumbSchema

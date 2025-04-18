@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -359,22 +357,22 @@ export default function LeanderServiceAreaPage() {
         name="Leander Septic Services" 
         description="Professional septic tank pumping, repair, and maintenance services for Leander, TX residents and businesses."
         areaServed="Leander, TX"
-        url={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`}
+        url="https://www.callalphaseptic.com/service-areas/leander"
         priceRange="$350-$800"
-        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`}
+        mainEntityOfPage="https://www.callalphaseptic.com/service-areas/leander"
       />
 
       <FAQSchema 
         faqs={leanderFaqs} 
         headline="Leander Septic Services FAQs"
-        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`}
+        mainEntityOfPage="https://www.callalphaseptic.com/service-areas/leander"
       />
       
       <BreadcrumbSchema
         items={[
-          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/` },
-          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas` },
-          { name: "Leander", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander` }
+          { name: "Home", item: "https://www.callalphaseptic.com/" },
+          { name: "Service Areas", item: "https://www.callalphaseptic.com/service-areas" },
+          { name: "Leander", item: "https://www.callalphaseptic.com/service-areas/leander" }
         ]}
       />
     </div>

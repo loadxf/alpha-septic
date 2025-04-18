@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -20,7 +18,7 @@ export const metadata: Metadata = {
   keywords:
     "Dripping Springs septic services, septic tank pumping Dripping Springs, septic cleaning Dripping Springs TX, commercial septic Dripping Springs, emergency septic service Dripping Springs, Hill Country septic services, Dripping Springs TX septic company",
   alternates: {
-    canonical: "process.env.NEXT_PUBLIC_SITE_URL/service-areas/dripping-springs",
+    canonical: "https://www.callalphaseptic.com/service-areas/dripping-springs",
   },
 }
 

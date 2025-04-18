@@ -1,8 +1,6 @@
-"use client";
-
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import type { Metadata } from "next"
 import { EnhancedBreadcrumb } from "@/components/enhanced-breadcrumb"
 import { CTASection } from "@/components/cta-section"
 import { FAQSection } from "@/components/FAQSection"
@@ -36,7 +34,7 @@ const budaFaqs = [
 export const metadata: Metadata = {
   title: "Septic Tank Pumping & Services in Buda, TX | Alpha Septic Services",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/buda`,
+    canonical: "https://www.callalphaseptic.com/service-areas/buda",
   },
 }
 

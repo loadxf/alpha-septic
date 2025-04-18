@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -21,7 +19,7 @@ export const metadata: Metadata = {
   keywords:
     "Manor septic service, septic pumping Manor TX, septic tank cleaning Manor, Manor septic company, emergency septic service Manor",
   alternates: {
-    canonical: "process.env.NEXT_PUBLIC_SITE_URL/service-areas/manor",
+    canonical: "https://www.callalphaseptic.com/service-areas/manor",
   },
 }
 

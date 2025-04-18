@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -21,7 +19,7 @@ export const metadata: Metadata = {
   keywords:
     "Hutto septic service, septic pumping Hutto TX, septic tank cleaning Hutto, Hutto septic company, emergency septic service Hutto",
   alternates: {
-    canonical: "process.env.NEXT_PUBLIC_SITE_URL/service-areas/hutto",
+    canonical: "https://www.callalphaseptic.com/service-areas/hutto",
   },
 }
 

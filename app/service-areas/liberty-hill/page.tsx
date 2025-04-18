@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
   keywords:
     "Liberty Hill septic services, septic tank pumping Liberty Hill TX, septic cleaning Liberty Hill, septic system maintenance Liberty Hill, emergency septic service Liberty Hill",
   alternates: {
-    canonical: "process.env.NEXT_PUBLIC_SITE_URL/service-areas/liberty-hill",
+    canonical: "https://www.callalphaseptic.com/service-areas/liberty-hill",
   },
 }
 

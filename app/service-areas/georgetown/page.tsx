@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -99,9 +97,9 @@ export default function GeorgetownServiceAreaPage() {
       
       <LocalBusinessSchema 
         name="Alpha Septic Services - Georgetown"
-        image="process.env.NEXT_PUBLIC_SITE_URL/logo.webp"
-        id="process.env.NEXT_PUBLIC_SITE_URL/service-areas/georgetown"
-        url="process.env.NEXT_PUBLIC_SITE_URL/service-areas/georgetown"
+        image="https://www.callalphaseptic.com/logo.webp"
+        id="https://www.callalphaseptic.com/service-areas/georgetown"
+        url="https://www.callalphaseptic.com/service-areas/georgetown"
         telephone="+15125551234"
         priceRange="$"
         streetAddress="123 Main Street"
