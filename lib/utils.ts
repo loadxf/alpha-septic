@@ -12,7 +12,7 @@ export function cn(...inputs: ClassValue[]) {
  * @returns Full canonical URL
  */
 export function getCanonicalUrl(path: string): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'
   // Ensure path starts with a slash and remove trailing slash
   const formattedPath = path.startsWith('/') ? path : `/${path}`
   return `${baseUrl}${formattedPath}`
