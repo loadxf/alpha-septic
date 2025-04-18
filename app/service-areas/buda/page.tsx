@@ -36,7 +36,7 @@ const budaFaqs = [
 export const metadata: Metadata = {
   title: "Septic Tank Pumping & Services in Buda, TX | Alpha Septic Services",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/buda`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/buda`,
   },
 }
 

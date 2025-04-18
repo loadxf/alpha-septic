@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords:
     "Austin septic service, septic pumping Austin TX, septic tank cleaning Austin, Austin septic company, emergency septic service Austin",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/austin`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/austin`,
   },
 }
 
@@ -382,14 +382,14 @@ export default function AustinServiceAreaPage() {
       <FAQSchema 
         faqs={austinFaqs} 
         headline="Austin Septic Services FAQs"
-        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/austin`}
+        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/austin`}
       />
       
       <BreadcrumbSchema
         items={[
-          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/` },
-          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas` },
-          { name: "Austin", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/austin` }
+          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/` },
+          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas` },
+          { name: "Austin", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/austin` }
         ]}
       />
     </div>

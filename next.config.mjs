@@ -2,12 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
-  // Disable TypeScript type checking to fix build issues
+  // Enable TypeScript type checking for production builds
   typescript: {
     // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    ignoreBuildErrors: true,
+    // This was previously set to ignore build errors
+    // Now we're enforcing type checking for better code quality
+    ignoreBuildErrors: false,
   },
   images: {
     domains: ['callalphaseptic.com', 'images.unsplash.com'],

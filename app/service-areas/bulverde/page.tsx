@@ -24,17 +24,17 @@ export const metadata: Metadata = {
   keywords:
     "Bulverde septic services, septic tank pumping Bulverde TX, septic cleaning Bulverde, septic system maintenance Bulverde, emergency septic service Bulverde",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/bulverde`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/bulverde`,
   },
   openGraph: {
     title: "Bulverde Septic Services | Alpha Septic Services",
     description:
       "Professional septic services in Bulverde, TX. Residential and commercial septic tank pumping, maintenance, and repairs with 24/7 emergency support.",
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/bulverde`,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/bulverde`,
     type: "website",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/images/service-areas/bulverde.webp`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/images/service-areas/bulverde.webp`,
         width: 1200,
         height: 630,
         alt: "Professional septic services in Bulverde, TX - Alpha Septic Services",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Bulverde Septic Services | Alpha Septic Services",
     description:
       "Professional septic services in Bulverde, TX. Residential and commercial septic tank pumping, maintenance, and repairs with 24/7 emergency support.",
-    images: [`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/images/service-areas/bulverde.webp`],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/images/service-areas/bulverde.webp`],
   },
 }
 
@@ -439,11 +439,11 @@ export default function BulverdeServiceAreaPage() {
 
       <BreadcrumbSchema
         items={[
-          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/` },
-          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas` },
+          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/` },
+          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas` },
           {
             name: "Bulverde",
-            item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/bulverde`,
+            item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/bulverde`,
           },
         ]}
       />
@@ -464,8 +464,8 @@ export default function BulverdeServiceAreaPage() {
       <WebPageSchema
         title="Bulverde Septic Services | Alpha Septic Services"
         description="Professional septic services in Bulverde, TX. Residential and commercial septic tank pumping, maintenance, and repairs with 24/7 emergency support."
-        url={`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/bulverde`}
-        primaryImageUrl={`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/images/service-areas/bulverde.webp`}
+        url={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/bulverde`}
+        primaryImageUrl={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/images/service-areas/bulverde.webp`}
         primaryImageAlt="Professional septic services in Bulverde, TX - Alpha Septic Services"
       />
     </div>

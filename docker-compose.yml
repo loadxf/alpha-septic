@@ -65,6 +65,13 @@ services:
     image: nginx:alpine
     container_name: alpha-septic-nginx
     restart: always
+    environment:
+      - NGINX_HOST=${NGINX_HOST}
+    command: /bin/sh -c "
+      cp /scripts/setup-nginx.sh /tmp/ &&
+      chmod +x /tmp/setup-nginx.sh &&
+      /tmp/setup-nginx.sh &&
+      nginx -g 'daemon off;'"
     ports:
       - "80:80"
       - "443:443"
@@ -72,6 +79,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/ssl:/etc/nginx/ssl
       - ./nginx/www:/var/www/html
+      - ./scripts:/scripts
     depends_on:
       - web
     networks:

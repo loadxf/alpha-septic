@@ -13,6 +13,19 @@ type EmailOptions = {
   attachments?: any[]
 }
 
+// Helper for conditional logging
+const logger = {
+  warn: (message: string, ...args: any[]) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(message, ...args);
+    }
+  },
+  error: (message: string, ...args: any[]) => {
+    // Log errors in all environments but could be replaced with proper error tracking in production
+    console.error(message, ...args);
+  }
+};
+
 // Create a Resend instance with fallback for different API versions
 const createResendClient = () => {
   try {
@@ -29,7 +42,7 @@ const createResendClient = () => {
           } catch (error: any) {
             // If we hit a React compatibility error with renderToReadableStream
             if (error.message && error.message.includes('renderToReadableStream')) {
-              console.warn('Resend react-email compatibility issue detected, using text/html fallback');
+              logger.warn('Resend react-email compatibility issue detected, using text/html fallback');
               
               // Strip out React components and use plain HTML/text instead
               const fallbackOptions = {
@@ -47,7 +60,7 @@ const createResendClient = () => {
             }
             
             // For other errors, continue to nodemailer
-            console.error('Resend error:', error);
+            logger.error('Resend error:', error);
             
             // Try to send using nodemailer instead
             await sendWithNodemailer(options);
@@ -57,12 +70,16 @@ const createResendClient = () => {
       }
     };
   } catch (error) {
-    console.error('Error initializing Resend client:', error);
+    logger.error('Error initializing Resend client:', error);
     // Return a fallback object with the same interface
     return {
       emails: {
         send: async (options: any) => {
-          console.log('Using fallback email sender');
+          // Only log in development environment
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('Using fallback email sender');
+          }
+          
           // Try to send using nodemailer instead
           try {
             await sendWithNodemailer(options);
@@ -130,7 +147,7 @@ export async function sendEmail(content: EmailContent, options: EmailOptions): P
       })
       return { success: true }
     } catch (error: any) {
-      console.error("Resend email error:", error)
+      logger.error("Resend email error:", error)
       // Continue to fallback method
     }
   }
@@ -171,7 +188,7 @@ export async function sendEmail(content: EmailContent, options: EmailOptions): P
     await transporter.sendMail(mailOptions)
     return { success: true }
   } catch (error: any) {
-    console.error("Email sending error:", error)
+    logger.error("Email sending error:", error)
     return { 
       success: false, 
       error: error.message || "Failed to send email"

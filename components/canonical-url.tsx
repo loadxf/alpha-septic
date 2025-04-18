@@ -9,7 +9,7 @@ interface CanonicalProps {
 
 export function CanonicalUrl({ path }: CanonicalProps) {
   const pathname = usePathname()
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'
   const canonicalUrl = path ? `${baseUrl}${path}` : `${baseUrl}${pathname}`
 
   return (

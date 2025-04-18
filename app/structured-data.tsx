@@ -156,7 +156,7 @@ export function generateServiceSchema(
     provider: {
       "@type": "LocalBusiness",
       name: provider,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}`,
       telephone: "+15127937867"
     },
     url,
@@ -196,7 +196,7 @@ export function generateArticleSchema(
       name: "Alpha Septic Services",
       logo: {
         "@type": "ImageObject",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/logo.webp`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/logo.webp`,
         width: "280",
         height: "140",
       },

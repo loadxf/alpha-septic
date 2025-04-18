@@ -53,8 +53,8 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Use the build-no-check script to skip type checking during build
-RUN npm run build-no-check
+# Use regular build command that now includes TypeScript checking
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner

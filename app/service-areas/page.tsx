@@ -14,7 +14,7 @@ import { MetaDescription } from "@/components/meta-description"
 export const metadata: Metadata = {
   title: "Service Areas | Alpha Septic Services",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas`,
   },
   description:
     "Alpha Septic Services provides professional septic solutions throughout Austin and surrounding Central Texas communities.",
@@ -108,8 +108,8 @@ export default function ServiceAreas() {
 
   // Create breadcrumb items structure for schema
   const breadcrumbItems = [
-    { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/` },
-    { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas` },
+    { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/` },
+    { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas` },
   ]
 
   // Create location schema for each service area
@@ -124,7 +124,7 @@ export default function ServiceAreas() {
       addressRegion: "TX",
       addressCountry: "US",
     },
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}${area.url}`,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}${area.url}`,
     hasMap: `https://www.google.com/maps/place/${encodeURIComponent(area.name)},+TX`,
   }))
 
@@ -325,13 +325,13 @@ export default function ServiceAreas() {
               "@type": "ListItem",
               position: 1,
               name: "Home",
-              item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/`
+              item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/`
             },
             {
               "@type": "ListItem",
               position: 2,
               name: "Service Areas",
-              item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas`
+              item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas`
             }
           ]
         }}
@@ -351,7 +351,7 @@ export default function ServiceAreas() {
             item: {
               "@type": "Place",
               name: `${area.name}, TX`,
-              url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}${area.url}`,
+              url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}${area.url}`,
             },
           })),
         }}
@@ -363,9 +363,9 @@ export default function ServiceAreas() {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name: "Alpha Septic Services",
-          image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/logo.webp`,
-          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}`,
-          url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}`,
+          image: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/logo.webp`,
+          "@id": `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}`,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}`,
           telephone: "+15127937867",
           priceRange: "$$",
           address: {

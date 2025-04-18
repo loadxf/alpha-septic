@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords:
     "Leander septic services, septic tank pumping Leander, septic cleaning Leander TX, commercial septic Leander, emergency septic service Leander",
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/leander`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`,
   },
 }
 
@@ -359,22 +359,22 @@ export default function LeanderServiceAreaPage() {
         name="Leander Septic Services" 
         description="Professional septic tank pumping, repair, and maintenance services for Leander, TX residents and businesses."
         areaServed="Leander, TX"
-        url={`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/leander`}
+        url={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`}
         priceRange="$350-$800"
-        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/leander`}
+        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`}
       />
 
       <FAQSchema 
         faqs={leanderFaqs} 
         headline="Leander Septic Services FAQs"
-        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/leander`}
+        mainEntityOfPage={`${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander`}
       />
       
       <BreadcrumbSchema
         items={[
-          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/` },
-          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas` },
-          { name: "Leander", item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.callalphaseptic.com"}/service-areas/leander` }
+          { name: "Home", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/` },
+          { name: "Service Areas", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas` },
+          { name: "Leander", item: `${process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || '${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.callalphaseptic.com'}'}/service-areas/leander` }
         ]}
       />
     </div>

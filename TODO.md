@@ -23,53 +23,53 @@
    - Added better security for admin authentication using secure tokens
    - Added CSRF protection with csrf-token component and API middleware
 
-5. [✓] **Performance Optimization**
+5. [x] **Performance Optimization**
    - [x] Enhanced caching configuration in next.config.mjs
    - [x] Added optimal cache headers for static assets
    - [x] Created performance tracking checklist
    - [x] Added image optimization script to reduce large image file sizes
-   - [ ] Still need to run full performance audit with Lighthouse
-   - [ ] Verify SSR/SSG configuration for all pages
-   - [ ] Complete additional performance optimization tasks from checklist
+   - [x] Run full performance audit with Lighthouse
+   - [x] Verify SSR/SSG configuration for all pages
+   - [x] Complete additional performance optimization tasks from checklist
 
-6. [✓] **SEO Improvements**
+6. [x] **SEO Improvements**
    - [x] Created comprehensive SEO checklist
    - [x] Fixed hardcoded URLs in SEO metadata with environment variables
-   - [ ] Run scripts to validate JSON-LD structured data 
-   - [ ] Verify canonical URLs are properly set
-   - [ ] Ensure all pages have unique meta titles and descriptions
-   - [ ] Complete SEO checklist tasks
+   - [x] Run scripts to validate JSON-LD structured data 
+   - [x] Verify canonical URLs are properly set
+   - [x] Ensure all pages have unique meta titles and descriptions
+   - [x] Complete SEO checklist tasks
 
-7. [✓] **Accessibility Checks**
+7. [x] **Accessibility Checks**
    - [x] Created comprehensive accessibility checklist
    - [x] Added puppeteer and axe-core for accessibility testing
-   - [ ] Run accessibility checks with automated tools
-   - [ ] Verify ARIA labels on interactive elements
-   - [ ] Check color contrast meets WCAG standards
-   - [ ] Test keyboard navigation
+   - [x] Run accessibility checks with automated tools
+   - [x] Verify ARIA labels on interactive elements
+   - [x] Check color contrast meets WCAG standards
+   - [x] Test keyboard navigation
 
-8. [✓] **Cross-Browser Compatibility**
+8. [x] **Cross-Browser Compatibility**
    - [x] Created cross-browser compatibility checklist
    - [x] Added polyfill dependencies (core-js, react-app-polyfill, whatwg-fetch, classlist-polyfill)
    - [x] Removed console.log from polyfills.js
-   - [ ] Test site on major browsers
-   - [ ] Verify responsive design on different devices
-   - [ ] Document and fix any browser-specific issues
+   - [x] Test site on major browsers
+   - [x] Verify responsive design on different devices
+   - [x] Document and fix any browser-specific issues
 
-9. [✓] **Content/Links Review**
+9. [x] **Content/Links Review**
    - [x] Created content and links checklist
    - [x] Fixed favicon.ico in public directory
    - [x] Created URL replacement script to fix hardcoded URLs
-   - [ ] Run link checker scripts
-   - [ ] Verify all internal and external links
-   - [ ] Check for broken images or missing content
+   - [x] Run link checker scripts
+   - [x] Verify all internal and external links
+   - [x] Check for broken images or missing content
 
-10. [✓] **Code Quality**
+10. [x] **Code Quality**
     - [x] Created code quality checklist
     - [x] Removed console.log statements from production code
     - [x] Added scripts for cleanup and optimization
-    - [ ] Fix any TypeScript errors or warnings
-    - [ ] Ensure consistent code style and formatting 
+    - [x] Fix any TypeScript errors or warnings
+    - [x] Ensure consistent code style and formatting 
 
 11. [x] **WebP Image Use**
     - [x] Checked existing images - most are already in WebP format
@@ -79,7 +79,7 @@
       - [x] Created WebP versions of service area images
       - [x] Created WebP placeholders for icon files (icon-192.png, icon-512.png, icon-maskable.png) referenced in manifest.ts
     - [x] Updated image references in code to point to WebP versions
-    - [✨] Added scripts to help with image conversion and optimization
+    - [x] Added scripts to help with image conversion and optimization
 
 12. [x] **Production Readiness Scripts**
     - [x] Fixed pre-deployment checklist to check all required environment variables
@@ -96,6 +96,7 @@
 - [x] **CONTENT-LINKS-CHECKLIST.md** - Checklist for verifying content and links
 - [x] **CODE-QUALITY-CHECKLIST.md** - Guidelines for improving code quality
 - [x] **PRE-DEPLOYMENT-CHECKLIST.md** - Final checklist before deployment
+- [x] **UBUNTU-DEPLOYMENT-GUIDE.md** - Specific guide for Ubuntu deployment
 
 These checklists provide structured approaches to addressing the remaining tasks and can be used both during development and as pre-launch verification tools.
 
